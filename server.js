@@ -37,13 +37,13 @@ var albums = [{
   releaseDate: '1994, March 8',
   genres: [ 'industrial', 'industrial metal' ]
 },
-{
-  _id: 133,
-  artistName: 'Metallica',
-  name: 'Metallica',
-  releaseDate: '1991, August 12',
-  genres: [ 'heavy metal' ]
-},
+// {
+//   _id: 133,
+//   artistName: 'Metallica',
+//   name: 'Metallica',
+//   releaseDate: '1991, August 12',
+//   genres: [ 'heavy metal' ]
+// },
 {
   _id: 134,
   artistName: 'The Prodigy',
