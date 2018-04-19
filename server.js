@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 /************
  * DATABASE *
  ************/
-
+// here's my change --jack
 /*
 HARD-CODED DATA
 What we've done here is mocked up what a database object would hypothetically look like
