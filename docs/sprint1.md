@@ -1,4 +1,4 @@
-# Sprint 1
+<!-- # Sprint 1
 
 ## Overview
 
@@ -86,7 +86,7 @@ var AlbumSchema = new Schema({
 });
 
 var Album = mongoose.model('Album', AlbumSchema);
-
+<!-- 
 module.exports = Album;
 ```
 
@@ -98,9 +98,9 @@ module.exports = Album;
 module.exports.Album = require("./album.js");
 ```
 
-</details>
+</details> -->
 
-
+<!-- 
 ## Step 4
 
 Let's try seeding our database.
@@ -111,8 +111,8 @@ Let's try seeding our database.
 
 1. Make sure `mongod` is running in a terminal.
 
-1. Run node seed.js
-
+1. Run node seed.js -->
+<!-- 
 1. Resolve any errors you encounter.
 
 <details><summary>hint: `error connect ECONNREFUSED`</summary>
@@ -125,7 +125,7 @@ Error: connect ECONNREFUSED 127.0.0.1:27017
 ```
 
 It usually means that `mongod` is not running.
-</details>
+<!-- </details> --> 
 
 
 ## Step 5:
