@@ -16,6 +16,12 @@ app.use(express.static(__dirname + '/public'));
  ************/
 
 /*
+
+Find Me :)
+
+*/
+
+/*
 HARD-CODED DATA
 What we've done here is mocked up what a database object would hypothetically look like
 if we had one. That's why we've included an idea. We're trying to simulate the data so that
