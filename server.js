@@ -1,5 +1,5 @@
 // SERVER-SIDE JAVASCRIPT
-
+const db = require('./models');
 //require express in our app
 var express = require('express');
 // generate a new express app and call it 'app'
@@ -14,7 +14,6 @@ app.use(express.static(__dirname + '/public'));
 /************
  * DATABASE *
  ************/
-// here's my change --jack
 /*
 
 Find Me :)
@@ -85,6 +84,16 @@ app.get('/', function homepage (req, res) {
 /*
  * JSON API Endpoints: This usually means AJAX has been used to call this route
  */
+
+ app.get('/api/albums', function(req, res) {
+  db.Album.find(function(err, albums) {
+    if (err) {
+      console.log('index error: ' + err);
+      res.sendStatus(500);
+    }
+    res.json(albums);
+  });
+})
 
 // TODO: DELETE ROUTE (removes/destroys an album in the DB. Needs to be called from AJAX.)
 
