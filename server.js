@@ -1,5 +1,5 @@
 // SERVER-SIDE JAVASCRIPT
-const db = require('./models');
+const db = require('./models/index');
 //require express in our app
 var express = require('express');
 // generate a new express app and call it 'app'
@@ -43,11 +43,16 @@ Then, take a look into the seed.js file to populate some starter data.
  * HTML Endpoints: This means we are expecting an HTML or EJS page to be rendered
  */
 
-app.get('/', function homepage (req, res) {
-  db.sampleAlbums
+app.get('/', function homepage(req, res) {
+  db.Album.find(function (err, albums) {
+    if (err) {
+      console.log('YIKES')
+    }
+    res.render('index', { albums: albums });
+
+  })
   // This albums variable is the array of objects defined above.
   // TODO: Eventually, this should be replaced with a find() call to your database!
-  res.render('index', { albums: albums });
 });
 
 // TODO: GET ROUTE for single album (Route has an id in the url. e.g., /:id that can be accessed
@@ -61,8 +66,8 @@ app.get('/', function homepage (req, res) {
  * JSON API Endpoints: This usually means AJAX has been used to call this route
  */
 
- app.get('/api/albums', function(req, res) {
-  db.Album.find(function(err, albums) {
+app.get('/api/albums', function (req, res) {
+  db.Album.find(function (err, albums) {
     if (err) {
       console.log('index error: ' + err);
       res.sendStatus(500);
