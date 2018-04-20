@@ -11,6 +11,9 @@ app.set('view engine', 'ejs');
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/albums');
 
 /************
  * DATABASE *
@@ -44,10 +47,16 @@ Then, take a look into the seed.js file to populate some starter data.
  */
 
 app.get('/', function homepage (req, res) {
-  db.sampleAlbums
+  db.Album.find(function (err, albums) {
+    if(err) {
+      console.log("index error: " + err);
+      res.sendStatus(500)
+    }
+    console.log(albums);
+    res.render('index', { albums: albums });
+  });
   // This albums variable is the array of objects defined above.
   // TODO: Eventually, this should be replaced with a find() call to your database!
-  res.render('index', { albums: albums });
 });
 
 // TODO: GET ROUTE for single album (Route has an id in the url. e.g., /:id that can be accessed
