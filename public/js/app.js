@@ -11,8 +11,23 @@
  *
  */
 
-$(document).ready(function() {
-  console.log('app.js loaded!');
+$(document).ready(function () {
+
+  $('#newAlbumForm').on('submit', function (e) {
+    e.preventDefault()
+    
+    $.ajax({
+      type: 'POST',
+      url: '/api/albums',
+      data: $(this).serialize(),
+      success: console.log($(this).serialize()),
+      error: handleError
+      
+    })
+  })
+
 });
 
-
+function handleError() {
+  console.log('************WHY IS THIS SHOWING UP?**********')
+}

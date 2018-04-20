@@ -1,16 +1,17 @@
 // SERVER-SIDE JAVASCRIPT
 const db = require('./models/index');
 //require express in our app
-var express = require('express');
+const express = require('express');
 // generate a new express app and call it 'app'
-var app = express();
-
+const app = express();
+const bodyParser = require('body-parser')
 // set EJS as our view engine. This allows us to make dynamic pages.
 app.set('view engine', 'ejs');
 
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /************
  * DATABASE *
@@ -76,6 +77,17 @@ app.get('/api/albums', function (req, res) {
   });
 })
 
+app.post('/api/albums', function (req, res) {
+  let newSubmission = req.body
+  db.Album.create(newSubmission, function (err, album) {
+    if (err) {
+      console.log('something went wrong')
+      res.sendStatus(500)
+    }
+    res.redirect('/')
+  })
+})
+
 // TODO: DELETE ROUTE (removes/destroys an album in the DB. Needs to be called from AJAX.)
 
 // TODO: PUT ROUTE (edits/updates the info in the DB. Needs to be called from AJAX.)
@@ -83,6 +95,14 @@ app.get('/api/albums', function (req, res) {
 /**********
  * SERVER *
  **********/
+/* Listen on PORT */
 
-// listen on port 3000
-app.listen(process.env.PORT || 3000);
+
+/* setting up port & listen */
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function () {
+  console.log(`App is Locked and Loaded on  port: ${PORT}`);
+});
+
+
+
