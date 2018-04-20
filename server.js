@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/albums');
+// mongoose.connect('mongodb://localhost/albums');
 
 /************
  * DATABASE *
