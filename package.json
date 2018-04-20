@@ -22,7 +22,7 @@
     "express": "^4.13.3"
   },
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
     "express": "^4.13.3",
     "mongoose": "^5.0.15"
   }
