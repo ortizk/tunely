@@ -23,7 +23,7 @@
     "express": "^4.13.3"
   },
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
     "express": "^4.13.3",
 
     "morgan": "^1.9.0",
