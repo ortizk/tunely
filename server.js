@@ -11,7 +11,9 @@ app.set('view engine', 'ejs');
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+var mongoose = require('mongoose');
+
+// mongoose.connect('mongodb://localhost/albums');
 
 /************
  * DATABASE *
@@ -44,6 +46,7 @@ Then, take a look into the seed.js file to populate some starter data.
  * HTML Endpoints: This means we are expecting an HTML or EJS page to be rendered
  */
 
+
 app.get('/', function homepage(req, res) {
   db.Album.find(function (err, albums) {
     if (err) {
@@ -52,6 +55,7 @@ app.get('/', function homepage(req, res) {
     res.render('index', { albums: albums });
 
   })
+
   // This albums variable is the array of objects defined above.
   // TODO: Eventually, this should be replaced with a find() call to your database!
 });
