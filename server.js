@@ -11,10 +11,12 @@ app.set('view engine', 'ejs');
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
+
 /************
  * DATABASE *
  ************/
 /*
+
 
 Find Me :)
 
@@ -42,6 +44,7 @@ Then, take a look into the seed.js file to populate some starter data.
  */
 
 app.get('/', function homepage (req, res) {
+  db.sampleAlbums
   // This albums variable is the array of objects defined above.
   // TODO: Eventually, this should be replaced with a find() call to your database!
   res.render('index', { albums: albums });
