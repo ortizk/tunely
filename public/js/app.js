@@ -12,6 +12,8 @@
  */
 
 $(document).ready(function () {
+	console.log('app.js loaded!');
+
 
   $('#newAlbumForm').on('submit', function (e) {
     e.preventDefault()
@@ -28,6 +30,67 @@ $(document).ready(function () {
 
 });
 
+
+
+<% albums.forEach(function(album) {%>
+
+
+function getAlbumHtml(album) { 	
+    // <!-- one album -->	
+    return	
+	
+    `<div class="row album">	
+	
+      <div class="col-md-10 col-md-offset-1">	
+       <div class="panel panel-default">	
+          <div class="panel-body">	
+	
+	
+          <!-- begin album internal row -->	
+            <div class='row'>	
+              <div class="col-md-3 col-xs-12 thumbnail album-art">	
+                <img src="http://placehold.it/800x800" alt="album image">	
+              </div>	
+	
+              <div class="col-md-9 col-xs-12">	
+                <ul class="list-group">	
+                  <li class="list-group-item">	
+                    <h4 class='inline-header'>Album Name:</h4>	
+                    <span class='album-name'>${album.albumName}</span>	
+                  </li>	
+	
+                  <li class="list-group-item">	
+                    <h4 class='inline-header'>Artist Name:</h4>	
+                    <span class='artist-name'>${album.artistName}</span>	
+                  </li>	
+	
+                  <li class="list-group-item">	
+                    <h4 class='inline-header'>Released date:</h4>	
+                    <span class='album-releaseDate'>${album.releaseDate}</span>	
+                  </li>	
+                </ul>	
+              </div>	
+	
+            </div>	
+            <!-- end of album internal row -->	
+	
+            <div class='panel-footer'>	
+            </div>	
+	
+          </div>	
+        </div>	
+      </div>	
+   </div>	
+    <!-- end one album -->	
+	
+  <% }); %>`;	
+}	 
+	
+function render () {	
+	$albumList.empty();	
+	$albumList.append(getAlbumHtml);	
+}	
 function handleError() {
   console.log('************WHY IS THIS SHOWING UP?**********')
 }
+
