@@ -11,9 +11,13 @@ app.set('view engine', 'ejs');
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
+var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/albums');
 /************
  * DATABASE *
  ************/
+
+ var db = require('./models/index');
 
 /*
 HARD-CODED DATA
@@ -25,34 +29,34 @@ First get your routes hooked up and the ejS looking the way you want. When you a
 ready to proceed with hooking up the database, go to ./models/album to create a schema.
 Then, take a look into the seed.js file to populate some starter data.
 */
-var albums = [{
-  _id: 132,
-  artistName: 'Nine Inch Nails',
-  name: 'The Downward Spiral',
-  releaseDate: '1994, March 8',
-  genres: [ 'industrial', 'industrial metal' ]
-},
-{
-  _id: 133,
-  artistName: 'Metallica',
-  name: 'Metallica',
-  releaseDate: '1991, August 12',
-  genres: [ 'heavy metal' ]
-},
-{
-  _id: 134,
-  artistName: 'The Prodigy',
-  name: 'Music for the Jilted Generation',
-  releaseDate: '1994, July 4',
-  genres: [ 'electronica', 'breakbeat hardcore', 'rave', 'jungle' ]
-},
-{
-  _id: 135,
-  artistName: 'Johnny Cash',
-  name: 'Unchained',
-  releaseDate: '1996, November 5',
-  genres: [ 'country', 'rock' ]
-}];
+// var albums = [{
+//   _id: 132,
+//   artistName: 'Nine Inch Nails',
+//   name: 'The Downward Spiral',
+//   releaseDate: '1994, March 8',
+//   genres: [ 'industrial', 'industrial metal' ]
+// },
+// {
+//   _id: 133,
+//   artistName: 'Metallica',
+//   name: 'Metallica',
+//   releaseDate: '1991, August 12',
+//   genres: [ 'heavy metal' ]
+// },
+// {
+//   _id: 134,
+//   artistName: 'The Prodigy',
+//   name: 'Music for the Jilted Generation',
+//   releaseDate: '1994, July 4',
+//   genres: [ 'electronica', 'breakbeat hardcore', 'rave', 'jungle' ]
+// },
+// {
+//   _id: 135,
+//   artistName: 'Johnny Cash',
+//   name: 'Unchained',
+//   releaseDate: '1996, November 5',
+//   genres: [ 'country', 'rock' ]
+// }];
 
 
 /**********
@@ -64,9 +68,10 @@ var albums = [{
  */
 
 app.get('/', function homepage (req, res) {
-  // This albums variable is the array of objects defined above.
-  // TODO: Eventually, this should be replaced with a find() call to your database!
-  res.render('index', { albums: albums });
+  db.Album.find(function (err, albums) {
+    res.render('index', { albums: albums });
+    console.log(albums);
+  })
 });
 
 // TODO: GET ROUTE for single album (Route has an id in the url. e.g., /:id that can be accessed
