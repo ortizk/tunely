@@ -11,6 +11,22 @@
  *
  */
 
-$(document).ready(function() {
-  console.log('app.js loaded!');
-});
+ 
+ $(document).ready(function () {
+    console.log('app.js loaded!');
+
+
+  // $('#newAlbumForm').on('submit', function (e) {
+  //   e.preventDefault()
+    
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '/api/albums',
+  //     data: $(this).serialize(),
+  //     success: console.log($(this).serialize()),
+  //     error: handleError
+      
+  //   })
+  // })
+
+}); 

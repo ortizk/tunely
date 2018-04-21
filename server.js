@@ -4,12 +4,14 @@
 var express = require('express');
 // generate a new express app and call it 'app'
 var app = express();
+var bodyParser = require('body-parser');
 
 // set EJS as our view engine. This allows us to make dynamic pages.
 app.set('view engine', 'ejs');
 
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: false}));
 
 var mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/albums');
@@ -70,9 +72,20 @@ Then, take a look into the seed.js file to populate some starter data.
 app.get('/', function homepage (req, res) {
   db.Album.find(function (err, albums) {
     res.render('index', { albums: albums });
-    console.log(albums);
+    // console.log(albums);
   })
 });
+
+
+// Adds new album to db and posts that shit
+app.post('/', function (req, res, next) {
+  console.log(req.body);
+  var newAlbum = new db.Album({albumName: req.body.albumName, artistName: req.body.artistName, releaseDate: req.body.releaseDate, genre: req.body.genre})
+  newAlbum.save(function() {
+    res.redirect('/');
+  })
+
+})
 
 // TODO: GET ROUTE for single album (Route has an id in the url. e.g., /:id that can be accessed
 // on the request object with req.params.id).
